@@ -1,0 +1,8 @@
+---
+- name: Clonar repositorio desde GitHub
+  hosts: all
+  become: yes
+  tasks:
+    - name: Clonar repositorio
+      git:
+        repo: 'https://github.com/telekom-security/tpotce'
