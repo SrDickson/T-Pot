@@ -46,7 +46,8 @@ echo "### This script will now install T-Pot and all of its dependencies."
 while [ "${myQST}" != "y" ] && [ "${myQST}" != "n" ];
   do
     echo
-    read -p "### Install? (y/n) " myQST
+#    read -p "### Install? (y/n) " myQST
+    echo myQST = "y"
     echo
   done
 if [ "${myQST}" = "n" ];
@@ -174,7 +175,9 @@ echo "###            Optimized for a distributed installation, without WebUI, El
 echo "### (M)obile - T-Pot Mobile installation."
 echo "###            Includes everything to run T-Pot Mobile (available separately)."
 while true; do
-  read -p "### Install Type? (h/s/m) " myTPOT_TYPE
+#  read -p "### Install Type? (h/s/m) " myTPOT_TYPE
+  echo "### Install Type? (h/s/m) "
+  myTPOT_TYPE = "h"
   case "${myTPOT_TYPE}" in
     h|H)
       echo
@@ -189,7 +192,7 @@ while true; do
       myTPOT_TYPE="SENSOR"
       cp ${HOME}/tpotce/compose/sensor.yml ${HOME}/tpotce/docker-compose.yml
       myINFO="### Make sure to deploy SSH keys to this SENSOR and disable SSH password authentication.
-### On HIVE run the tpotce/deploy.sh script to join this SENSOR to the HIVE."
+      ### On HIVE run the tpotce/deploy.sh script to join this SENSOR to the HIVE."
       break ;;
     m|M)
       echo
@@ -209,62 +212,62 @@ if [ "${myTPOT_TYPE}" == "HIVE" ];
 	echo "### T-Pot User Configuration ..."
 	echo
 	# Asking for web user name
-	myWEB_USER=""
-	while [ 1 != 2 ];
-	  do
-	    myOK=""
-	    read -rp "### Enter your web user name: " myWEB_USER
-	    myWEB_USER=$(echo $myWEB_USER | tr -cd "[:alnum:]_.-")
-	    echo "### Your username is: ${myWEB_USER}"
-	    while [[ ! "${myOK}" =~ [YyNn] ]];
-	      do
-	        read -rp "### Is this correct? (y/n) " myOK
-	      done
-	    if [[ "${myOK}" =~ [Yy] ]] && [ "$myWEB_USER" != "" ];
-	      then
-	        break
-	      else
-	        echo
-	    fi
-	  done
+	myWEB_USER="Javs"
+	# while [ 1 != 2 ];
+	#   do
+	#     myOK=""
+	#     read -rp "### Enter your web user name: " myWEB_USER
+	#     myWEB_USER=$(echo $myWEB_USER | tr -cd "[:alnum:]_.-")
+	#     echo "### Your username is: ${myWEB_USER}"
+	#     while [[ ! "${myOK}" =~ [YyNn] ]];
+	#       do
+	#         read -rp "### Is this correct? (y/n) " myOK
+	#       done
+	#     if [[ "${myOK}" =~ [Yy] ]] && [ "$myWEB_USER" != "" ];
+	#       then
+	#         break
+	#       else
+	#         echo
+	#     fi
+	#   done
 
 	# Asking for web user password
-	myWEB_PW="pass1"
-	myWEB_PW2="pass2"
+	myWEB_PW="Almendra1998"
+	myWEB_PW2="Almendra1998"
 	mySECURE=0
 	myOK=""
-	while [ "${myWEB_PW}" != "${myWEB_PW2}"  ] && [ "${mySECURE}" == "0" ]
-	  do
-	    echo
-	    while [ "${myWEB_PW}" == "pass1"  ] || [ "${myWEB_PW}" == "" ]
-	      do
-	        read -rsp "### Enter password for your web user: " myWEB_PW
-	        echo
-	      done
-	    read -rsp "### Repeat password you your web user: " myWEB_PW2
-	    echo
-	    if [ "${myWEB_PW}" != "${myWEB_PW2}" ];
-	      then
-	        echo "### Passwords do not match."
-	        myWEB_PW="pass1"
-	        myWEB_PW2="pass2"
-	    fi
-	    mySECURE=$(printf "%s" "$myWEB_PW" | /usr/sbin/cracklib-check | grep -c "OK")
-	    if [ "$mySECURE" == "0" ] && [ "$myWEB_PW" == "$myWEB_PW2" ];
-	      then
-	        while [[ ! "${myOK}" =~ [YyNn] ]];
-	          do
-	            read -rp "### Keep insecure password? (y/n) " myOK
-	          done
-	        if [[ "${myOK}" =~ [Nn] ]] || [ "$myWEB_PW" == "" ];
-	          then
-	            myWEB_PW="pass1"
-	            myWEB_PW2="pass2"
-	            mySECURE=0
-	            myOK=""
-	        fi
-	    fi
-	done
+	# while [ "${myWEB_PW}" != "${myWEB_PW2}"  ] && [ "${mySECURE}" == "0" ]
+	#   do
+	#     echo
+	#     while [ "${myWEB_PW}" == "pass1"  ] || [ "${myWEB_PW}" == "" ]
+	#       do
+	#         read -rsp "### Enter password for your web user: " myWEB_PW
+	#         echo
+	#       done
+	#     read -rsp "### Repeat password you your web user: " myWEB_PW2
+	#     echo
+	#     if [ "${myWEB_PW}" != "${myWEB_PW2}" ];
+	#       then
+	#         echo "### Passwords do not match."
+	#         myWEB_PW="pass1"
+	#         myWEB_PW2="pass2"
+	#     fi
+	#     mySECURE=$(printf "%s" "$myWEB_PW" | /usr/sbin/cracklib-check | grep -c "OK")
+	#     if [ "$mySECURE" == "0" ] && [ "$myWEB_PW" == "$myWEB_PW2" ];
+	#       then
+	#         while [[ ! "${myOK}" =~ [YyNn] ]];
+	#           do
+	#             read -rp "### Keep insecure password? (y/n) " myOK
+	#           done
+	#         if [[ "${myOK}" =~ [Nn] ]] || [ "$myWEB_PW" == "" ];
+	#           then
+	#             myWEB_PW="pass1"
+	#             myWEB_PW2="pass2"
+	#             mySECURE=0
+	#             myOK=""
+	#         fi
+	#     fi
+	# done
 
 	# Write username and password to T-Pot config file
 	echo "### Creating base64 encoded htpasswd username and password for T-Pot config file: ${myTPOT_CONF_FILE}"
