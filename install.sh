@@ -47,7 +47,7 @@ while [ "${myQST}" != "y" ] && [ "${myQST}" != "n" ];
   do
     echo
 #    read -p "### Install? (y/n) " myQST
-    myQST = "y"
+    myQST="y"
     echo
   done
 if [ "${myQST}" = "n" ];
@@ -177,7 +177,7 @@ echo "###            Includes everything to run T-Pot Mobile (available separate
 while true; do
 #  read -p "### Install Type? (h/s/m) " myTPOT_TYPE
   echo "### Install Type? (h/s/m) "
-  myTPOT_TYPE = "h"
+  myTPOT_TYPE="h"
   case "${myTPOT_TYPE}" in
     h|H)
       echo
