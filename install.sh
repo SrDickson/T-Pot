@@ -47,7 +47,7 @@ while [ "${myQST}" != "y" ] && [ "${myQST}" != "n" ];
   do
     echo
 #    read -p "### Install? (y/n) " myQST
-    myQST = "y"
+    $myQST = "y"
     echo
   done
 if [ "${myQST}" = "n" ];
